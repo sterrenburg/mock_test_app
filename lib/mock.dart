@@ -1,8 +1,9 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:injectable/injectable.dart';
-import 'package:mockito/mockito.dart';
+import 'package:mockito/mockito.dart' as mockito;
 
 /// Mock class for FirebaseAuth
-@RegisterAs(FirebaseAuth, env: Environment.test)
+@test
+@RegisterAs(FirebaseAuth)
 @injectable
-class MockFirebaseAuth extends Mock implements FirebaseAuth {}
+class MockFirebaseAuth extends mockito.Mock implements FirebaseAuth {}

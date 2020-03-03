@@ -5,4 +5,5 @@ import 'package:mocktestapp/injectable.iconfig.dart';
 final getIt = GetIt.instance;
 
 @injectableInit
-void configure(String environment) => $initGetIt(getIt);
+void configure(String environment) =>
+    $initGetIt(getIt, environment: environment);

@@ -4,7 +4,6 @@ import 'package:injectable/injectable.dart' as injectable;
 import 'package:mockito/mockito.dart';
 import 'package:mocktestapp/injectable.dart';
 
-
 void main() {
   // Run `$initGetIt(GetIt.instance) in test mode before all tests
   setUpAll(() {
@@ -12,9 +11,19 @@ void main() {
     configure(injectable.Environment.test);
   });
 
+  FirebaseAuth mockFirebaseAuth;
+
+  setUp(() {
+    mockFirebaseAuth = getIt<FirebaseAuth>();
+  });
+
   // Tests that want access to `getIt<FirebaseAuth>()` go here.
   test('should be able to mock getIt FirebaseAuth instance', () {
-    final firebaseAuth = getIt<FirebaseAuth>();
-    when(firebaseAuth.toString()).thenAnswer((_) => 'I am a MockFirebaseAuth');
+    print(getIt<FirebaseAuth>());
+
+    when(mockFirebaseAuth.signOut()).thenAnswer((_) async {
+      print('mocking sign out');
+    });
+    expect(mockFirebaseAuth.signOut(), completes);
   });
 }
